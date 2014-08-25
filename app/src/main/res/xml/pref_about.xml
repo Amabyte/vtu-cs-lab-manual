@@ -1,0 +1,20 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference android:title="@string/pref_version_title"
+        android:summary="@string/pref_version_summary"
+        android:enabled="false">
+    </Preference>
+
+    <Preference android:title="@string/pref_web_manual_title"
+        android:summary="@string/pref_web_manual_summary">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="http://github.com/fsmk/CS-VTU-Lab-Manual"
+            />
+    </Preference>
+
+    <Preference android:title="@string/pref_license_title"
+        android:summary="@string/pref_license_summary"
+        android:key="about_license" />
+
+</PreferenceScreen>
