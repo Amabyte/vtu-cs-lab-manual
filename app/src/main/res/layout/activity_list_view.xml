@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingTop="5dp"
+    android:orientation="vertical"
+    tools:context=".SplashScreen"
+    android:background="#ffd2d2d2"
+    >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        tools:ignore="UselessParent"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Powered By Matrix and FSMK"
+            android:textColor="#ff000000"
+            android:layout_gravity="center_horizontal" />
+
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:id="@+id/ListView"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:drawSelectorOnTop="true"
+            android:layout_gravity="center"
+            android:dividerHeight="2dp"
+            android:background="@drawable/round_corner" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:id="@+id/linearLayout">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
