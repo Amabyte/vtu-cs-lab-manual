@@ -24,7 +24,8 @@ public class Helper {
     public static int FONT_SIZE = 0;
     public static boolean AUTO_SLEEP_DISABLED = true;
 
-    public static String[] FILES_TO_IGNORE = {".png",".gif",".jpg",".pdf",".doc"};
+    // Full file or folder name
+    public static String[] FILES_TO_IGNORE = {"img"};
 
 
 
@@ -33,16 +34,24 @@ public class Helper {
         final List<String> list =  new ArrayList<String>();
         Collections.addAll(list, stringArray);
 
+        final List<String> unwantedFiles = new ArrayList<String>();
+        Collections.addAll(unwantedFiles,FILES_TO_IGNORE);
 
-      //  for (int i = 0; i < FILES_TO_IGNORE.length; i++) {
+/*
         for(String fileExt : FILES_TO_IGNORE){
             for (int j = 0; j < list.size(); j++) {
+                Log.d("hello","--------------------");
+                Log.d("hello","matching :"+list.get(j));
                 if(list.get(j).endsWith(fileExt)){
+                    Log.d("hello","removed");
                     list.remove(j);
                 }
             }
 
         }
+*/
+
+        list.removeAll(unwantedFiles);
 
         n = list.toArray(new String[list.size()]);
         return n;
