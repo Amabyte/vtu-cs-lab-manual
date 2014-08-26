@@ -4,6 +4,7 @@ import android.content.Context;
 
 import org.markdown4j.Markdown4jProcessor;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -18,17 +19,20 @@ public class ToHtml {
 
 
 
-    public String parseMarkDown(String FileName){
+    public String parseMarkDown(String path,String fileName){
+        String absolutePath = path+ File.separator +fileName;
+
         String html="";
         try {
-            if(FileName.endsWith(".md")) {
-                html = new Markdown4jProcessor().process(Helper.readFromFile(context, FileName));
+            if(absolutePath.endsWith(".md")) {
+                html = new Markdown4jProcessor().process(Helper.readFromFile(context, absolutePath));
             }else{
-                html="<pre>"+Helper.readFromFile(context, FileName)+"<pre>";
+                html="<pre>"+Helper.readFromFile(context, absolutePath)+"<pre>";
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return html;
     }
 
