@@ -72,28 +72,25 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
         path = extras.getString("path");
 
         l = (ListView) findViewById(R.id.ListView);
-        l.setAdapter(new ListAdapter(this,R.layout.single_row,new ArrayList<String>()));
+        l.setAdapter(new ArrayAdapter<String>(this,R.layout.simple_list_item_1,new ArrayList<String>()));
         setUpGoogleAds();
-        new ListActivity.MyTask().execute(path+ File.separator+folderName);
+        new MyTask().execute(path+ File.separator+folderName);
 
     }
 
 
-    class MyTask extends AsyncTask {
+    class MyTask extends AsyncTask<String,String,Void> {
 
-        private int count=0;
         private ArrayAdapter<String> adapter;
         @Override
         protected void onPreExecute() {
-            setProgressBarIndeterminate(false);
-            setProgressBarVisibility(true);
             adapter = (ArrayAdapter<String>) l.getAdapter();
         }
 
         @Override
-        protected Object doInBackground(Object[] objects) {
+        protected Void doInBackground(String[] objects) {
 
-            String pathToAssets = (String)objects[0];
+            String pathToAssets = objects[0];
             try {
                 items = ListActivity.this.getAssets().list(pathToAssets);
             } catch (IOException e) {
@@ -102,22 +99,20 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
             items = Helper.removeUnwantedFiles(items);
 
             for(String item :items){
-                publishProgress(item);
+                //Add each item to the listView by removing the extension
+                publishProgress(Helper.removeExtention(item));
             }
 
             return null;
         }
 
         @Override
-        protected void onProgressUpdate(Object[] values) {
-            adapter.add((String)values[0]);
-            count++;
-            setProgress((int)((double)(count/items.length)*10000));
+        protected void onProgressUpdate(String[] values) {
+            adapter.add(values[0]);
         }
 
         @Override
-        protected void onPostExecute(Object o) {
-            setProgressBarVisibility(false);
+        protected void onPostExecute(Void o) {
             l.setOnItemClickListener(ListActivity.this);
         }
     }
