@@ -30,25 +30,15 @@
             android:layout_gravity="bottom|center_horizontal"
             android:background="@color/black_overlay"
             android:orientation="horizontal"
-            android:weightSum="2"
+            android:weightSum="9"
             tools:ignore="UselessParent">
 
-
-                <LinearLayout
-                    style="@style/ButtonBar"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="@android:color/transparent"
-                    android:weightSum="2"
-                    tools:ignore="UselessParent">
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:weightSum="3"
                         tools:ignore="UselessParent">
 
@@ -81,17 +71,6 @@
 
                     </LinearLayout>
 
-                    <Button android:id="@+id/disp_btn_day_night"
-                        style="@style/ButtonBarButton"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/day_night"
-                        android:onClick="btnDayNightOnClick"
-                        android:layout_weight="1">
-                    </Button>
-
-                </LinearLayout>
-
             <TextView
                 android:id="@+id/TvFileName"
                 android:layout_width="0dp"
@@ -100,9 +79,18 @@
                 android:textColor="@android:color/white"
                 android:padding="15dp"
                 android:lines="1"
-                android:layout_weight="1"/>
+                android:layout_weight="4"/>
 
-            </LinearLayout>
+                    <Button android:id="@+id/disp_btn_day_night"
+                        style="@style/ButtonBarButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/day_night"
+                        android:onClick="btnDayNightOnClick"
+                        android:layout_weight="2">
+                    </Button>
+
+                </LinearLayout>
 
 
 
