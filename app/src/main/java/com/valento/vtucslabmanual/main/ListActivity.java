@@ -74,6 +74,7 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
         l = (ListView) findViewById(R.id.ListView);
         l.setAdapter(new ArrayAdapter<String>(this,R.layout.simple_list_item_1,new ArrayList<String>()));
         setUpGoogleAds();
+        this.setTitle(folderName);
         new MyTask().execute(path+ File.separator+folderName);
 
     }
