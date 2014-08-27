@@ -1,6 +1,7 @@
 package com.valento.vtucslabmanual.helper;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.markdown4j.Markdown4jProcessor;
 
@@ -27,13 +28,19 @@ public class ToHtml {
             if(absolutePath.endsWith(".md")) {
                 html = new Markdown4jProcessor().process(Helper.readFromFile(context, absolutePath));
             }else{
-                html="<pre>"+Helper.readFromFile(context, absolutePath)+"<pre>";
+                html =Helper.readFromFile(context, absolutePath);
+                html = html.replace("&","&amp;");
+                html = html.replace("<","&lt;");
+                html = html.replace(">","&gt;");
+                html="<pre>"+html+"<pre>";
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        Log.d("hello",html);
         return html;
+
     }
 
 
