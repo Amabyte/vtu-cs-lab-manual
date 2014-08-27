@@ -1,21 +1,17 @@
 package com.valento.vtucslabmanual.main;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.valento.vtucslabmanual.helper.Helper;
 import com.valento.vtucslabmanual.helper.ToHtml;
@@ -37,17 +33,13 @@ public class DisplayActivity extends Activity {
 
     private String fileName = null;
     private String path = null;
-    private int brightness;
 
     private WebView webView =null;
     private Button dayNight=null;
     private GestureDetector gestureDetector;
     private WebSettings webSettings = null;
     private View controlsView;
-    private SeekBar bar;
-    private ContentResolver cResolver;
-    //Window object, that will store a reference to the current window
-    private Window window;
+    private TextView tv;
 
 
     @Override
@@ -59,11 +51,12 @@ public class DisplayActivity extends Activity {
         fileName = intent.getStringExtra("filename");
         path = intent.getStringExtra("path");
 
-        bar = (SeekBar) findViewById(R.id.seekBar);
         dayNight = (Button) findViewById(R.id.disp_btn_day_night);
         controlsView = findViewById(R.id.fullscreen_content_controls);
         webView = (WebView) findViewById(R.id.webView);
+        tv = (TextView) findViewById(R.id.TvFileName);
 
+        tv.setText(fileName);
         webSettings = webView.getSettings();
         webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
@@ -79,31 +72,20 @@ public class DisplayActivity extends Activity {
 
         String css = "\n" +
                 "html { font-size:100%; }\n" +
-                "\n" +
                 "pre,code,kbd,samp {\n" +
                 "\tbackground-color:#F4F4F4;\n" +
                 "\tfont-size: 80%;\n" +
                 "\tborder-radius: 3px;\n" +
                 "\tfont-family: Monaco, Menlo, Consolas, \"Courier New\", monospace;\n" +
                 "}\n" +
-                "\n" +
-                "\n" +
                 "b,strong {\n" +
                 "\tfont-weight: bold;\n" +
                 "}\n" +
-                "\n" +
-                "sub,sup {\n" +
-                "\tfont-size: 75%;\n" +
-                "\tline-height: 0;\n" +
-                "\tposition: relative;\n" +
-                "\tvertical-align: baseline;\n" +
-                "}\n" +
-                "\n" +
                 "img { max-width: 100%; }";
 
         String preText = "<html><head>"
-                +"<style type=\"text/css\">"
-                +css
+                + "<style type=\"text/css\">"
+                + css
                 + "</style></head>"
                 + "<body>";
         String postText = "</body></html>";
@@ -115,64 +97,6 @@ public class DisplayActivity extends Activity {
         webView.loadDataWithBaseURL(BaseImgPath, htmlText, "text/html", "UTF-8", null);
 
 
-        cResolver = getContentResolver();
-
-        //Get the current window
-        window = getWindow();
-
-        bar.setMax(255);
-        bar.setKeyProgressIncrement(1);
-
-        try
-        {
-            //Get the current system brightness
-            brightness = android.provider.Settings.System.getInt(cResolver, android.provider.Settings.System.SCREEN_BRIGHTNESS);
-        }
-        catch (Settings.SettingNotFoundException e)
-        {
-            //Throw an error case it couldn't be retrieved
-            Log.e("Error", "Cannot access system brightness");
-            e.printStackTrace();
-        }
-
-        //Set the progress of the seek bar based on the system's brightness
-        bar.setProgress(brightness);
-
-
-        bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            public void onStopTrackingTouch(SeekBar seekBar)
-            {
-                //Set the system brightness using the brightness variable value
-                android.provider.Settings.System.putInt(cResolver, android.provider.Settings.System.SCREEN_BRIGHTNESS, brightness);
-                //Get the current window attributes
-                WindowManager.LayoutParams layoutpars = window.getAttributes();
-                //Set the brightness of this window
-                layoutpars.screenBrightness = brightness / (float)255;
-                //Apply attribute changes to this window
-                window.setAttributes(layoutpars);
-            }
-
-            public void onStartTrackingTouch(SeekBar seekBar)
-            {
-                //Nothing handled here
-            }
-
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
-            {
-                //Set the minimal brightness level
-                //if seek bar is 20 or any value below
-                if(progress<=20)
-                {
-                    //Set the brightness to 20
-                    brightness=20;
-                }
-                else //brightness is greater than 20
-                {
-                    //Set brightness variable based on the progress bar
-                    brightness = progress;
-                }
-            }
-        });
         gestureDetector = new GestureDetector(this, new MyGestureDetector());
         webView.setOnTouchListener(new View.OnTouchListener() {
             @Override
