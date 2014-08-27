@@ -32,7 +32,7 @@ public class DisplayActivity extends Activity {
     // to check if the buttons bar(fonts size and day night) is visible or no
     private boolean isControlVisible=true;
     //to set the theme to back or white
-    private boolean isDarkTheme = false;
+    private boolean isNightTheme = false;
     private String htmlText;
 
     private String fileName = null;
@@ -110,7 +110,6 @@ public class DisplayActivity extends Activity {
 
         htmlText = preText + htmlText + postText;
 
-      //  webView.loadDataWithBaseURL("file:///android_asset/theme/", htmlText, "text/html", "UTF-8", null);
 
         String BaseImgPath = "file:///android_asset/"+path+ File.separator+"img"+File.separator;
         webView.loadDataWithBaseURL(BaseImgPath, htmlText, "text/html", "UTF-8", null);
@@ -244,15 +243,15 @@ public class DisplayActivity extends Activity {
         try {
             Class clsWebSettingsClassic = getClassLoader().loadClass("android.webkit.WebSettingsClassic");
             Method md = clsWebSettingsClassic.getMethod("setProperty", String.class, String.class);
-            md.invoke(webView.getSettings(), "inverted", String.valueOf(!isDarkTheme));
+            md.invoke(webView.getSettings(), "inverted", String.valueOf(isNightTheme));
             md.invoke(webView.getSettings(), "inverted_contrast", "1");
 
-            if(isDarkTheme) {
+            if(isNightTheme) {
                 dayNight.setText("Day Mode");
-                isDarkTheme =false;
+                isNightTheme =false;
             }else{
                 dayNight.setText("Night Mode");
-                isDarkTheme =true;
+                isNightTheme =true;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -286,8 +285,11 @@ public class DisplayActivity extends Activity {
         super.onResume();
         Helper.loadPreferences(this);
 
-        isDarkTheme = !Helper.THEME.equals("Day");
-        //set the theme of the display (Dark theme or Light theme)
+        if(Helper.THEME.equals("Day")){
+            isNightTheme = false;
+        }else{
+            isNightTheme=true;
+        }
         toggleTheme();
 
       /*
