@@ -112,7 +112,7 @@ public class Helper {
     public static void loadPreferences(Context context){
         SharedPreferences preferences= PreferenceManager.getDefaultSharedPreferences(context);
         AUTO_SLEEP_DISABLED = preferences.getBoolean("gen_sleep_mode_checkbox",true);
-        THEME = preferences.getString("theme_default_theme", "0");
+        THEME = preferences.getString("theme_default_theme", "Day");
         FONT_SIZE = Integer.parseInt(preferences.getString("theme_font_size_list", "16"));
         FONT = Integer.parseInt(preferences.getString("theme_font_name_list", "0"));
     }
