@@ -1,7 +1,6 @@
 package com.valento.vtucslabmanual.helper;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.markdown4j.Markdown4jProcessor;
 
@@ -37,8 +36,6 @@ public class ToHtml {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        Log.d("hello",html);
         return html;
 
     }
