@@ -24,6 +24,15 @@ public class Helper {
     public static int FONT_SIZE = 0;
     public static boolean AUTO_SLEEP_DISABLED = true;
 
+
+
+    //Constants throughout the app.
+    public static String FILE_NAME = "filename";
+    public static String FOLDER_NAME = "folder";
+    public static String PATH = "path";
+    public static String TYPE = "type";
+
+
     // Full file or folder name
     public static String[] FILES_TO_IGNORE = {"img"};
 
