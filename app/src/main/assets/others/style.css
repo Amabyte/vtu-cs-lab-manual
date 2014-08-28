@@ -1,0 +1,82 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-image: url(images/bg.jpg);
+	background-repeat: repeat-x;
+	background-color: #DDD;
+}
+a:link {
+	color: #FFF;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #FFF;
+}
+a:hover {
+	text-decoration: none;
+	color: #FFF;
+}
+a:active {
+	text-decoration: none;
+	color: #FFF;
+}
+
+#container {
+	height: auto;
+	width: 98%;
+	margin-right: auto;
+	margin-left: auto;
+}
+#container .matrix {
+	float: left;
+	height: auto;
+	width: 100%;
+}
+#container .about {
+	float: left;
+	height: auto;
+	width: 100%;
+	border-top-color: #333;
+	border-right-color: #333;
+	border-bottom-color: #333;
+	border-left-color: #333;
+}
+
+#container .matrix img {
+	float: right;
+	height: auto;
+	width: auto;
+}
+#container .fsmk {
+	float: left;
+	height: auto;
+	width: 100%;
+}
+#container .fsmk img {
+	float: right;
+	height: auto;
+	width: auto;
+}
+#container .footer {
+	background-color: #333;
+	width: 100%;
+	float: left;
+}
+#container .footer p {
+	text-align: center;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	color: #FFF;
+	text-decoration: none;
+}
+#container h1 {
+	font-family: Verdana, Geneva, sans-serif;
+	text-decoration: none;
+	text-align: center;
+}
