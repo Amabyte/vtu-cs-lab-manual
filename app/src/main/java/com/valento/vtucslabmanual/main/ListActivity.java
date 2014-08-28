@@ -68,8 +68,8 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
         setContentView(R.layout.activity_list_view);
 
         Bundle extras = getIntent().getExtras();
-        folderName=extras.getString("folder");
-        path = extras.getString("path");
+        folderName=extras.getString(Helper.FOLDER_NAME);
+        path = extras.getString(Helper.PATH);
 
         l = (ListView) findViewById(R.id.ListView);
         l.setAdapter(new ArrayAdapter<String>(this,R.layout.simple_list_item_1,new ArrayList<String>()));
@@ -141,21 +141,21 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
                 break;
             case R.id.contributors:
                 i = new Intent(this,DisplayActivity.class);
-                i.putExtra("filename","Contributors.md");
-                i.putExtra("path","others");
-                i.putExtra("type","options");
+                i.putExtra(Helper.FILE_NAME,"Contributors.md");
+                i.putExtra(Helper.PATH,"others");
+                i.putExtra(Helper.TYPE,"options");
                 break;
             case R.id.about:
                 i = new Intent(this,DisplayActivity.class);
-                i.putExtra("filename","ABOUT.html");
-                i.putExtra("path","others");
-                i.putExtra("type","options");
+                i.putExtra(Helper.FILE_NAME,"ABOUT.html");
+                i.putExtra(Helper.PATH,"others");
+                i.putExtra(Helper.TYPE,"options");
                 break;
             case R.id.license:
                 i = new Intent(this,DisplayActivity.class);
-                i.putExtra("filename","LICENSE");
-                i.putExtra("path","others");
-                i.putExtra("type","options");
+                i.putExtra(Helper.FILE_NAME,"LICENSE");
+                i.putExtra(Helper.PATH,"others");
+                i.putExtra(Helper.TYPE,"options");
                 break;
         }
         if (i!=null) {
@@ -171,13 +171,13 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
         if(Helper.isDirectory(this,path + File.separator + folderName, items[i])){
 
             intent = new Intent(this,ListActivity.class);
-            intent.putExtra("folder",items[i]);
-            intent.putExtra("path",path+ File.separator+folderName);
+            intent.putExtra(Helper.FOLDER_NAME,items[i]);
+            intent.putExtra(Helper.PATH,path+ File.separator+folderName);
             startActivity(intent);
         }else{
             intent = new Intent(this,DisplayActivity.class);
-            intent.putExtra("path",path+ File.separator+folderName);
-            intent.putExtra("filename",items[i]);
+            intent.putExtra(Helper.PATH,path+ File.separator+folderName);
+            intent.putExtra(Helper.FILE_NAME,items[i]);
             startActivity(intent);
         }
 

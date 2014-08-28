@@ -161,21 +161,21 @@ public class MainListActivity extends Activity implements AdapterView.OnItemClic
                 break;
             case R.id.contributors:
                 i = new Intent(this,DisplayActivity.class);
-                i.putExtra("filename","Contributors.md");
-                i.putExtra("path","others");
-                i.putExtra("type","options");
+                i.putExtra(Helper.FILE_NAME,"Contributors.md");
+                i.putExtra(Helper.PATH,"others");
+                i.putExtra(Helper.TYPE,"options");
                 break;
             case R.id.about:
                 i = new Intent(this,DisplayActivity.class);
-                i.putExtra("filename","ABOUT.html");
-                i.putExtra("path","others");
-                i.putExtra("type","options");
+                i.putExtra(Helper.FILE_NAME,"ABOUT.html");
+                i.putExtra(Helper.PATH,"others");
+                i.putExtra(Helper.TYPE,"options");
                 break;
             case R.id.license:
                 i = new Intent(this,DisplayActivity.class);
-                i.putExtra("filename","LICENSE");
-                i.putExtra("path","others");
-                i.putExtra("type","options");
+                i.putExtra(Helper.FILE_NAME,"LICENSE");
+                i.putExtra(Helper.PATH,"others");
+                i.putExtra(Helper.TYPE,"options");
                 break;
         }
         if (i!=null) {
