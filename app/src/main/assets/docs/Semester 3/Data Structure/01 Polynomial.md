@@ -224,6 +224,6 @@ The first polynomial is 4x^4 3x^3 2x^2 1x^1
 
 The second polynomial is 6x^5 4x^3 3x^1
 
-The resultant addition polynomial is 6x^5 4x^4 7x^3 2x^2 4x^1 */
+The resultant addition polynomial is 6x^5 4x^4 7x^3 2x^2 4x^1
 
 
