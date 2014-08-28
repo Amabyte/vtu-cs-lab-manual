@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.valento.vtucslabmanual.helper.Helper;
@@ -33,13 +35,14 @@ public class DisplayActivity extends Activity {
 
     private String fileName = null;
     private String path = null;
-
+    private String type;
     private WebView webView =null;
     private Button dayNight=null;
     private GestureDetector gestureDetector;
     private WebSettings webSettings = null;
     private View controlsView;
     private TextView tv;
+    private FrameLayout parent;
 
 
     @Override
@@ -50,13 +53,18 @@ public class DisplayActivity extends Activity {
         Intent intent = getIntent();
         fileName = intent.getStringExtra("filename");
         path = intent.getStringExtra("path");
+        type = intent.getStringExtra("type");
 
+        if(type==null){
+            type="";
+        }
         dayNight = (Button) findViewById(R.id.disp_btn_day_night);
         controlsView = findViewById(R.id.fullscreen_content_controls);
         webView = (WebView) findViewById(R.id.webView);
         tv = (TextView) findViewById(R.id.TvFileName);
+        parent = (FrameLayout) findViewById(R.id.ParentLayout);
 
-        tv.setText(fileName);
+        tv.setText(Helper.removeExtention(fileName));
         webSettings = webView.getSettings();
         webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
@@ -70,32 +78,43 @@ public class DisplayActivity extends Activity {
         ToHtml toHtmlObj = new ToHtml(this);
         htmlText = toHtmlObj.parseMarkDown(path, fileName);
 
-        String css = "\n" +
-                "html { font-size:100%; }\n" +
-                "pre,code,kbd,samp {\n" +
-                "\tbackground-color:#F4F4F4;\n" +
-                "\tfont-size: 80%;\n" +
-                "\tborder-radius: 3px;\n" +
-                "\tfont-family: Monaco, Menlo, Consolas, \"Courier New\", monospace;\n" +
-                "}\n" +
-                "b,strong {\n" +
-                "\tfont-weight: bold;\n" +
-                "}\n" +
-                "img { max-width: 100%; }";
+        String css ="";
+        String BasePath;
+
+        if(type.equals("options")){
+            Log.d("hello","in options");
+            BasePath = "file:///android_asset/others/";
+            css="<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\" />";
+            parent.removeView(controlsView);
+        }else{
+            Log.d("hello","in others");
+            BasePath = "file:///android_asset/"+path+ File.separator+"img"+File.separator;
+
+            css = "<style type=\"text/css\">"+
+                    "html { font-size:100%; }\n" +
+                    "pre,code,kbd,samp {\n" +
+                    "\tbackground-color:#F4F4F4;\n" +
+                    "\tfont-size: 80%;\n" +
+                    "\tborder-radius: 3px;\n" +
+                    "\tfont-family: Monaco, Menlo, Consolas, \"Courier New\", monospace;\n" +
+                    "}\n" +
+                    "b,strong {\n" +
+                    "\tfont-weight: bold;\n" +
+                    "}\n" +
+                    "img { max-width: 100%; }"+
+                    "</style>";
+        }
+
 
         String preText = "<html><head>"
-                + "<style type=\"text/css\">"
                 + css
-                + "</style></head>"
+                + "</head>"
                 + "<body>";
         String postText = "</body></html>";
 
         htmlText = preText + htmlText + postText;
 
-
-        String BaseImgPath = "file:///android_asset/"+path+ File.separator+"img"+File.separator;
-        webView.loadDataWithBaseURL(BaseImgPath, htmlText, "text/html", "UTF-8", null);
-
+        webView.loadDataWithBaseURL(BasePath, htmlText, "text/html", "UTF-8", null);
 
         gestureDetector = new GestureDetector(this, new MyGestureDetector());
         webView.setOnTouchListener(new View.OnTouchListener() {
@@ -160,9 +179,6 @@ public class DisplayActivity extends Activity {
 
 
 
-
-
-
     private void toggleTheme(){
         try {
             Class clsWebSettingsClassic = getClassLoader().loadClass("android.webkit.WebSettingsClassic");
@@ -207,13 +223,28 @@ public class DisplayActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        if(!type.equals("options")){
+            Log.d("hello","setting configuaration");
+            setConfiguaration();
+        }else{
+            if (!isNightTheme){
+                toggleTheme();
+            }
+        }
+
+    }
+
+
+    private void setConfiguaration(){
         Helper.loadPreferences(this);
 
-        if(Helper.THEME.equals("Day")){
+        if (Helper.THEME.equals("Day")) {
             isNightTheme = false;
-        }else{
-            isNightTheme=true;
+        } else {
+            isNightTheme = true;
         }
+
         toggleTheme();
 
       /*
@@ -221,22 +252,20 @@ public class DisplayActivity extends Activity {
         normal (Droid Sans), serif (Droid Serif), and monospace (Droid Sans Mono).
        */
 
-        if(Helper.FONT == 0){
+        if (Helper.FONT == 0) {
             webSettings.setFixedFontFamily("monospace");
-        }else if(Helper.FONT == 1){
+        } else if (Helper.FONT == 1) {
             webSettings.setFixedFontFamily("normal");
-        }else{
+        } else {
             webSettings.setFixedFontFamily("serif");
         }
 
         //set Font size
         webSettings.setDefaultFontSize(Helper.FONT_SIZE);
 
-
-        if(Helper.AUTO_SLEEP_DISABLED){
+        if (Helper.AUTO_SLEEP_DISABLED) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
-
     }
 
 }
