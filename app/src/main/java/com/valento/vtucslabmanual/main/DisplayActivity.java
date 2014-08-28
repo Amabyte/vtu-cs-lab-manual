@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,7 +19,6 @@ import com.valento.vtucslabmanual.helper.Helper;
 import com.valento.vtucslabmanual.helper.ToHtml;
 
 import java.io.File;
-import java.lang.reflect.Method;
 
 import blink9.com.vtucslabmanual.R;
 
@@ -29,7 +29,7 @@ public class DisplayActivity extends Activity {
     // to check if the buttons bar(fonts size and day night) is visible or no
     private boolean isControlVisible=true;
     //to set the theme to back or white
-    private boolean isNightTheme = false;
+    private boolean isNightTheme;
     private String htmlText;
 
     private String fileName = null;
@@ -50,13 +50,14 @@ public class DisplayActivity extends Activity {
         setContentView(R.layout.activity_display);
 
         Intent intent = getIntent();
-        fileName = intent.getStringExtra("filename");
-        path = intent.getStringExtra("path");
-        type = intent.getStringExtra("type");
+        fileName = intent.getStringExtra(Helper.FILE_NAME);
+        path = intent.getStringExtra(Helper.PATH);
+        type = intent.getStringExtra(Helper.TYPE);
 
         if(type==null){
             type="";
         }
+
         dayNight = (Button) findViewById(R.id.disp_btn_day_night);
         controlsView = findViewById(R.id.fullscreen_content_controls);
         webView = (WebView) findViewById(R.id.webView);
@@ -73,24 +74,61 @@ public class DisplayActivity extends Activity {
         webSettings.setGeolocationEnabled(false);
         webSettings.setNeedInitialFocus(false);
         webSettings.setSaveFormData(false);
+        webSettings.setJavaScriptEnabled(true);
+
+
+        //Load the Shared Preferences.
+        setConfiguaration();
 
         ToHtml toHtmlObj = new ToHtml(this);
         htmlText = toHtmlObj.parseMarkDown(path, fileName);
 
-        String css ="";
+        String css;
         String BasePath;
+        String InitialBodyCss;  // initialize the Html body color.
+
+        //Java Script for day and Night mode
+        String jScript = "<script language=\"javascript\">\n" +
+                "   function nightTheme(){\n" +
+                "   document.body.style.backgroundColor='black';\n" +
+                "   document.body.style.color='white';\n" +
+                "   }\n" +
+                "   function dayTheme(){\n" +
+                "    document.body.style.backgroundColor='white';\n" +
+                "    document.body.style.color='black';\n" +
+                "   }\n" +
+                "</script>";
+
+
+
 
         if(type.equals("options")){
+           setDayTheme();
             BasePath = "file:///android_asset/others/";
             css="<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\" />";
             parent.removeView(controlsView);
         }else{
+
+            // Assign Body Background color and text color based on the preference value.
+            if (isNightTheme){
+                InitialBodyCss = "body {\n" +
+                        "background-color:black;\n" +
+                        "    color: white;\n" +
+                        "}";
+            }else{
+                InitialBodyCss = "body {\n" +
+                        "background-color:white;\n" +
+                        "    color: black;\n" +
+                        "}";
+            }
+
             BasePath = "file:///android_asset/"+path+ File.separator+"img"+File.separator;
 
             css = "<style type=\"text/css\">"+
+                    InitialBodyCss+
                     "html { font-size:100%; }\n" +
                     "pre,code,kbd,samp {\n" +
-                    "\tbackground-color:#F4F4F4;\n" +
+                    //"\tbackground-color:#F4F4F4;\n" +             // messes up night mode so removed
                     "\tfont-size: 80%;\n" +
                     "\tborder-radius: 3px;\n" +
                     "\tfont-family: Monaco, Menlo, Consolas, \"Courier New\", monospace;\n" +
@@ -100,18 +138,20 @@ public class DisplayActivity extends Activity {
                     "}\n" +
                     "img { max-width: 100%; }"+
                     "</style>";
-        }
 
+        }
 
         String preText = "<html><head>"
                 + css
+                +jScript
                 + "</head>"
-                + "<body>";
+                + "<body >";
         String postText = "</body></html>";
 
         htmlText = preText + htmlText + postText;
 
         webView.loadDataWithBaseURL(BasePath, htmlText, "text/html", "UTF-8", null);
+
 
         gestureDetector = new GestureDetector(this, new MyGestureDetector());
         webView.setOnTouchListener(new View.OnTouchListener() {
@@ -120,7 +160,6 @@ public class DisplayActivity extends Activity {
                 return gestureDetector.onTouchEvent(event);
             }
         });
-
     }
 
 
@@ -160,9 +199,21 @@ public class DisplayActivity extends Activity {
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            if(isControlVisible){
-                ControlViewToggle(true);
+            if(e1.getY() > e2.getY()){
+                //Scroll UP
+                if(isControlVisible){
+                    ControlViewToggle(true);
+                }
+
+            }else{
+                //Scroll Down
+                if(!isControlVisible){
+                    ControlViewToggle(false);
+                }
+
             }
+
+
             return false;
         }
 
@@ -177,6 +228,11 @@ public class DisplayActivity extends Activity {
 
 
     private void toggleTheme(){
+
+
+/*
+
+// Old method .. only works in my phone :P
         try {
             Class clsWebSettingsClassic = getClassLoader().loadClass("android.webkit.WebSettingsClassic");
             Method md = clsWebSettingsClassic.getMethod("setProperty", String.class, String.class);
@@ -193,11 +249,17 @@ public class DisplayActivity extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
     }
 
 
     public void btnDayNightOnClick(View view) {
-        toggleTheme();
+        //toggleTheme();
+        if(isNightTheme){
+            setDayTheme();
+        }else{
+            setNightTheme();
+        }
     }
 
     public void btnFontDownOnClick(View view){
@@ -209,7 +271,6 @@ public class DisplayActivity extends Activity {
     public void btnFontUpOnClick(View view){
         WebSettings settings = webView.getSettings();
         settings.setTextZoom( (int)(settings.getTextZoom() * 1.1) );
-
     }
 
     @Override
@@ -217,18 +278,19 @@ public class DisplayActivity extends Activity {
         super.onPostCreate(savedInstanceState);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-        if(!type.equals("options")){
-            setConfiguaration();
-        }else{
-            if (!isNightTheme){
-                toggleTheme();
-            }
-        }
 
+
+    private void setDayTheme(){
+        isNightTheme = false;
+        webView.loadUrl("javascript:dayTheme()");
+        dayNight.setText("Night Mode");
+    }
+
+    private void setNightTheme(){
+        isNightTheme = true;
+        webView.loadUrl("javascript:nightTheme()");
+        dayNight.setText("Day Mode");
     }
 
 
@@ -236,12 +298,12 @@ public class DisplayActivity extends Activity {
         Helper.loadPreferences(this);
 
         if (Helper.THEME.equals("Day")) {
-            isNightTheme = false;
+            isNightTheme=false;
+            setDayTheme();
         } else {
-            isNightTheme = true;
+            isNightTheme=true;
+            setNightTheme();
         }
-
-        toggleTheme();
 
       /*
         font family
