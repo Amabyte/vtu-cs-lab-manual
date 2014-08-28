@@ -39,6 +39,7 @@ public class SettingsActivity extends PreferenceActivity {
                 Intent i = new Intent(getBaseContext(), DisplayActivity.class);
                 i.putExtra("filename", "LICENSE");
                 i.putExtra("path", "others");
+                i.putExtra("type","options");
                 startActivity(i);
                 return true;
             }
