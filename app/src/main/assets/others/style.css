@@ -68,15 +68,28 @@ a:active {
 	width: 100%;
 	float: left;
 }
+#container .header {
+	background-color: #333;
+	width: 100%;
+	float: left;
+}
+#container .matrix p {
+	text-decoration: none;
+}
+
+#container .header h1 {
+	font-family: Verdana, Geneva, sans-serif;
+	color: #FFF;
+	text-decoration: none;
+	text-align: center;
+	height: auto;
+}
+
+
 #container .footer p {
 	text-align: center;
 	font-family: Verdana, Geneva, sans-serif;
 	font-size: 12px;
 	color: #FFF;
 	text-decoration: none;
-}
-#container h1 {
-	font-family: Verdana, Geneva, sans-serif;
-	text-decoration: none;
-	text-align: center;
 }
