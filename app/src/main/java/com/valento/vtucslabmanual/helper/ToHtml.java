@@ -24,10 +24,12 @@ public class ToHtml {
 
         String html="";
         try {
-            if(absolutePath.endsWith(".md")) {
+            if (absolutePath.endsWith(".md")) {
                 html = new Markdown4jProcessor().process(Helper.readFromFile(context, absolutePath));
-            }else{
-                html =Helper.readFromFile(context, absolutePath);
+            } else if (absolutePath.endsWith(".html")){
+                html = Helper.readFromFile(context, absolutePath);
+            }else {
+                html = Helper.readFromFile(context, absolutePath);
                 html = html.replace("&","&amp;");
                 html = html.replace("<","&lt;");
                 html = html.replace(">","&gt;");
@@ -37,7 +39,6 @@ public class ToHtml {
             e.printStackTrace();
         }
         return html;
-
     }
 
 
