@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -82,12 +81,10 @@ public class DisplayActivity extends Activity {
         String BasePath;
 
         if(type.equals("options")){
-            Log.d("hello","in options");
             BasePath = "file:///android_asset/others/";
             css="<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\" />";
             parent.removeView(controlsView);
         }else{
-            Log.d("hello","in others");
             BasePath = "file:///android_asset/"+path+ File.separator+"img"+File.separator;
 
             css = "<style type=\"text/css\">"+
@@ -225,7 +222,6 @@ public class DisplayActivity extends Activity {
         super.onResume();
 
         if(!type.equals("options")){
-            Log.d("hello","setting configuaration");
             setConfiguaration();
         }else{
             if (!isNightTheme){

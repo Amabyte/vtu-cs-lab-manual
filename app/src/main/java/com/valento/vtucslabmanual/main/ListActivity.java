@@ -147,7 +147,7 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
                 break;
             case R.id.about:
                 i = new Intent(this,DisplayActivity.class);
-                i.putExtra("filename","ABOUT.md");
+                i.putExtra("filename","ABOUT.html");
                 i.putExtra("path","others");
                 i.putExtra("type","options");
                 break;
