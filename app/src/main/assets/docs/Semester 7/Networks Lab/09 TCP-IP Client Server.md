@@ -138,7 +138,3 @@
 * If no errors, run ./serv.out
 * Run gcc *client.c* -o client.out in the client terminal.
 * If no errors, run ./client.out
-
-*Screenshots:-*
-
-![ScreenShot of Output](9.png)
