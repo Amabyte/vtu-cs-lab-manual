@@ -73,11 +73,47 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
 
         l = (ListView) findViewById(R.id.ListView);
         l.setAdapter(new ArrayAdapter<String>(this,R.layout.simple_list_item_1,new ArrayList<String>()));
-        setUpGoogleAds();
+
         this.setTitle(folderName);
         new MyTask().execute(path+ File.separator+folderName);
+        /*  Ads removed
+        setUpGoogleAds();
+        */
+    }
+
+
+    /*  Ads removed
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (adView != null) {
+            adView.resume();
+        }
 
     }
+
+    @Override
+    public void onPause() {
+
+        if (adView != null) {
+            adView.pause();
+        }
+
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        // Destroy the AdView.
+
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
+    }
+
+*/
 
 
     class MyTask extends AsyncTask<String,String,Void> {

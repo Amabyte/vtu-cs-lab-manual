@@ -70,36 +70,43 @@ public class MainListActivity extends Activity implements AdapterView.OnItemClic
         l = (ListView) findViewById(R.id.ListView);
         l.setAdapter(new ArrayAdapter<String>(this,R.layout.simple_list_item_1,new ArrayList<String>()));
         new MyTask().execute("docs");
+      /*  Ads removed
         setUpGoogleAds();
+        */
     }
 
+    /*  Ads removed
+        @Override
+        protected void onResume() {
+            super.onResume();
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (adView != null) {
-            adView.resume();
+            if (adView != null) {
+                adView.resume();
+            }
+
         }
-    }
 
-    @Override
-    public void onPause() {
-        if (adView != null) {
-            adView.pause();
+        @Override
+        public void onPause() {
+
+            if (adView != null) {
+                adView.pause();
+            }
+
+            super.onPause();
         }
-        super.onPause();
-    }
 
-    @Override
-    public void onDestroy() {
-        // Destroy the AdView.
-        if (adView != null) {
-            adView.destroy();
+        @Override
+        public void onDestroy() {
+            // Destroy the AdView.
+
+            if (adView != null) {
+                adView.destroy();
+            }
+            super.onDestroy();
         }
-        super.onDestroy();
-    }
 
-
+    */
     class MyTask extends AsyncTask<String,String,Void>{
 
         private ArrayAdapter<String> adapter;
