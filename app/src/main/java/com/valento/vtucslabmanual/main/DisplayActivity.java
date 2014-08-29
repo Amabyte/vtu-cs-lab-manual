@@ -99,7 +99,6 @@ public class DisplayActivity extends Activity {
                 "   }\n" +
                 "</script>";
 
-
         if(type.equals("options")){
            setDayTheme();
             BasePath = "file:///android_asset/others/";
