@@ -2,10 +2,12 @@ package com.valento.vtucslabmanual.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 
 import blink9.com.vtucslabmanual.R;
+import com.crashlytics.android.Crashlytics;
 
 public class SplashScreen extends Activity {
 
@@ -15,6 +17,7 @@ public class SplashScreen extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Crashlytics.start(this);
         setContentView(R.layout.activity_splash);
         new Handler().postDelayed(new Runnable() {
 
