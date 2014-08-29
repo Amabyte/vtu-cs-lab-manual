@@ -29,14 +29,17 @@
             android:layout_height="0dp"
             android:id="@+id/ListView"
             android:layout_weight="1"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
             android:drawSelectorOnTop="true"
             android:layout_gravity="center"
             android:dividerHeight="2dp"
-            android:background="@drawable/round_corner"
-            android:layout_marginBottom="8dp"
+            android:background="@drawable/border_ui"
+            android:layout_marginBottom="3dp"
             />
+        <!--   add in list view for rounded coreners
+          android:background="@drawable/round_corner"     -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
