@@ -37,7 +37,8 @@
             android:dividerHeight="2dp"
             android:background="@drawable/border_ui"
             android:layout_marginBottom="3dp"
-            />
+            android:footerDividersEnabled="true"
+            android:headerDividersEnabled="true" />
         <!--   add in list view for rounded coreners
           android:background="@drawable/round_corner"     -->
         <LinearLayout
