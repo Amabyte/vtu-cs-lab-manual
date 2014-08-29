@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -145,7 +147,7 @@ public class DisplayActivity extends Activity {
         String postText = "</body></html>";
 
         htmlText = preText + htmlText + postText;
-
+        webView.loadData("<html></html>","text/html",null);
         webView.loadDataWithBaseURL(BasePath, htmlText, "text/html", "UTF-8", null);
 
 
