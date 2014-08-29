@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="8"
     android:background="#669900" >
 
     <ImageView
-        android:id="@+id/imgLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/fsmk_logo"
         android:layout_marginTop="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="3"
+        />
 
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:textSize="12dp"
-        android:textColor="#454545"
-        android:gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:text="Powered by Matrix and FSMK" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="35dp"
         android:padding="50px"
-        android:gravity="center"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
         android:text="VTU CS Lab Manual"
-        android:id="@+id/textView"
-        android:layout_below="@+id/imgLogo"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_weight="1"
+        />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/matrix_logo"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/textView"
- />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="3"
+        />
 
-</RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:textColor="#454545"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="1"
+        android:text="Powered by Matrix and FSMK" />
+</LinearLayout>
