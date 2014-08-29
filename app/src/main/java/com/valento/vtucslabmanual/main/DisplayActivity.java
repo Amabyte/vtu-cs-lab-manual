@@ -100,8 +100,6 @@ public class DisplayActivity extends Activity {
                 "</script>";
 
 
-
-
         if(type.equals("options")){
            setDayTheme();
             BasePath = "file:///android_asset/others/";
@@ -113,12 +111,12 @@ public class DisplayActivity extends Activity {
             if (isNightTheme){
                 InitialBodyCss = "body {\n" +
                         "background-color:black;\n" +
-                        "    color: white;\n" +
+                        "color: white;\n" +
                         "}";
             }else{
                 InitialBodyCss = "body {\n" +
                         "background-color:white;\n" +
-                        "    color: black;\n" +
+                        "color: black;\n" +
                         "}";
             }
 
@@ -141,11 +139,10 @@ public class DisplayActivity extends Activity {
 
         }
 
-        String preText = "<html><head>"
+        String preText = "<html>"
                 + css
-                +jScript
-                + "</head>"
-                + "<body >";
+                + "<body>"
+                + jScript;
         String postText = "</body></html>";
 
         htmlText = preText + htmlText + postText;
