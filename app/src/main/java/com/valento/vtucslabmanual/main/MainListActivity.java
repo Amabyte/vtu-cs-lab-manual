@@ -13,10 +13,11 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
-
+/*
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+*/
 import com.valento.vtucslabmanual.helper.Helper;
 
 import java.io.IOException;
@@ -33,13 +34,13 @@ public class MainListActivity extends Activity implements AdapterView.OnItemClic
 
 
     //Google Ads
-    private AdView adView;
+    //private AdView adView;
     LinearLayout layout;
 
     /* Your ad unit id. Replace with your actual ad unit id. */
     private static final String AD_UNIT_ID = "ca-app-pub-9272592099448804/7647853267";
 
-
+/*
     private void setUpGoogleAds(){
         // Create an ad.
         adView = new AdView(this);
@@ -61,7 +62,7 @@ public class MainListActivity extends Activity implements AdapterView.OnItemClic
         // Start loading the ad in the background.
         adView.loadAd(adRequest);
     }
-
+*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,7 +202,7 @@ public class MainListActivity extends Activity implements AdapterView.OnItemClic
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 

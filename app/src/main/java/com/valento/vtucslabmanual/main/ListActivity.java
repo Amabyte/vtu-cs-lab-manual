@@ -11,10 +11,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-
+/*
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+*/
 import com.valento.vtucslabmanual.helper.Helper;
 
 import java.io.File;
@@ -35,12 +36,12 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
 
 
     //Google Ads
-    private AdView adView;
+  //  private AdView adView;
 
     /* Your ad unit id. Replace with your actual ad unit id. */
     private static final String AD_UNIT_ID = "ca-app-pub-9272592099448804/7647853267";
 
-
+/*
     private void setUpGoogleAds(){
         // Create an ad.
         adView = new AdView(this);
@@ -62,6 +63,7 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
         // Start loading the ad in the background.
         adView.loadAd(adRequest);
     }
+*/
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

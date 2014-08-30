@@ -39,7 +39,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v4:20.0.0'
     // Google Play Services
-    compile 'com.google.android.gms:play-services:5.2.08'
+   // compile 'com.google.android.gms:play-services:5.2.08'
     compile 'com.crashlytics.android:crashlytics:1.+'
 
 }

@@ -16,13 +16,6 @@
         >
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Powered By Matrix and FSMK"
-            android:textColor="#ff000000"
-            android:layout_gravity="center_horizontal" />
 
         <ListView
             android:layout_width="fill_parent"
@@ -41,6 +34,16 @@
             android:headerDividersEnabled="true" />
         <!--   add in list view for rounded coreners
           android:background="@drawable/round_corner"     -->
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Powered By Matrix and FSMK"
+            android:textColor="#ff000000"
+            android:layout_gravity="center_horizontal" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
