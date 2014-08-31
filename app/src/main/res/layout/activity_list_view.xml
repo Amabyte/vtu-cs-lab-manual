@@ -4,7 +4,6 @@
     android:layout_height="fill_parent"
     android:paddingTop="5dp"
     android:orientation="vertical"
-    tools:context=".SplashScreen"
     android:background="#ffd2d2d2"
     >
 
