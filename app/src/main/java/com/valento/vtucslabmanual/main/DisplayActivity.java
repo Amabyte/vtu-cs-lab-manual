@@ -71,7 +71,6 @@ public class DisplayActivity extends Activity {
         webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         webSettings.setAppCacheEnabled(false);
-        webSettings.setBlockNetworkImage(true);
         webSettings.setLoadsImagesAutomatically(true);
         webSettings.setGeolocationEnabled(false);
         webSettings.setNeedInitialFocus(false);
@@ -148,8 +147,8 @@ public class DisplayActivity extends Activity {
 
         htmlText = preText + htmlText + postText;
         webView.loadData("<html></html>","text/html",null);
-        webView.loadDataWithBaseURL(BasePath, htmlText, "text/html", "UTF-8", null);
-
+      //  webView.loadDataWithBaseURL(BasePath, htmlText, "text/html", "UTF-8", null);
+        webView.loadDataWithBaseURL(BasePath,htmlText, "text/html", "UTF-8","");
 
         gestureDetector = new GestureDetector(this, new MyGestureDetector());
         webView.setOnTouchListener(new View.OnTouchListener() {
