@@ -29,8 +29,6 @@
         <item name="android:actionModeBackground">@drawable/cab_background_top_blink9blue</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_blink9blue</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Blink9blue</item>
-        
-        
     </style>
 
     <style name="ActionBar.Solid.Blink9blue" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
