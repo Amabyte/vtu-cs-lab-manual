@@ -1,6 +1,7 @@
 package com.valento.vtucslabmanual.helper;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.markdown4j.Markdown4jProcessor;
 
@@ -21,7 +22,6 @@ public class ToHtml {
 
     public String parseMarkDown(String path,String fileName){
         String absolutePath = path+ File.separator +fileName;
-
         String html="";
         try {
             if (absolutePath.endsWith(".md")) {
