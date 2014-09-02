@@ -36,6 +36,7 @@
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_blink9blue</item>
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_blink9blue</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Blink9blue</item>
+        <item name="android:titleTextStyle">@style/TitleColor</item>
     </style>
 
     <style name="ActionBar.Transparent.Blink9blue" parent="@android:style/Widget.Holo.Light.ActionBar">
@@ -75,4 +76,7 @@
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Blink9blue</item>
     </style>
 
+    <style name="TitleColor" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">#ffffff</item>
+    </style>
 </resources>
