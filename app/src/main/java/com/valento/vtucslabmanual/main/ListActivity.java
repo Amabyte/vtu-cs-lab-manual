@@ -35,36 +35,6 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
     String items[]=null;
 
 
-    //Google Ads
-  //  private AdView adView;
-
-    /* Your ad unit id. Replace with your actual ad unit id. */
-    private static final String AD_UNIT_ID = "ca-app-pub-9272592099448804/7647853267";
-
-/*
-    private void setUpGoogleAds(){
-        // Create an ad.
-        adView = new AdView(this);
-        adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId(AD_UNIT_ID);
-
-        // Add the AdView to the view hierarchy. The view will have no size
-        // until the ad is loaded.
-        LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);
-        layout.addView(adView);
-
-        // Create an ad request. Check logcat output for the hashed device ID to
-        // get test ads on a physical device.
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice("9A5D07C7A32423F1F16F988F53E21E7B")
-                .build();
-
-        // Start loading the ad in the background.
-        adView.loadAd(adRequest);
-    }
-*/
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
@@ -78,44 +48,9 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
 
         this.setTitle(folderName);
         new MyTask().execute(path+ File.separator+folderName);
-        /*  Ads removed
-        setUpGoogleAds();
-        */
-    }
-
-
-    /*  Ads removed
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (adView != null) {
-            adView.resume();
-        }
 
     }
 
-    @Override
-    public void onPause() {
-
-        if (adView != null) {
-            adView.pause();
-        }
-
-        super.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        // Destroy the AdView.
-
-        if (adView != null) {
-            adView.destroy();
-        }
-        super.onDestroy();
-    }
-
-*/
 
 
     class MyTask extends AsyncTask<String,String,Void> {

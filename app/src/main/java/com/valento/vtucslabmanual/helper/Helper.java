@@ -46,20 +46,6 @@ public class Helper {
         final List<String> unwantedFiles = new ArrayList<String>();
         Collections.addAll(unwantedFiles,FILES_TO_IGNORE);
 
-/*
-        for(String fileExt : FILES_TO_IGNORE){
-            for (int j = 0; j < list.size(); j++) {
-                Log.d("hello","--------------------");
-                Log.d("hello","matching :"+list.get(j));
-                if(list.get(j).endsWith(fileExt)){
-                    Log.d("hello","removed");
-                    list.remove(j);
-                }
-            }
-
-        }
-*/
-
         list.removeAll(unwantedFiles);
 
         n = list.toArray(new String[list.size()]);

@@ -126,7 +126,6 @@ public class DisplayActivity extends Activity {
                     InitialBodyCss+
                     "html { font-size:100%; }\n" +
                     "pre,code,kbd,samp {\n" +
-                    //"\tbackground-color:#F4F4F4;\n" +             // messes up night mode so removed
                     "\tfont-size: 80%;\n" +
                     "\tborder-radius: 3px;\n" +
                     "\tfont-family: Monaco, Menlo, Consolas, \"Courier New\", monospace;\n" +
@@ -147,7 +146,6 @@ public class DisplayActivity extends Activity {
 
         htmlText = preText + htmlText + postText;
         webView.loadData("<html></html>","text/html",null);
-      //  webView.loadDataWithBaseURL(BasePath, htmlText, "text/html", "UTF-8", null);
         webView.loadDataWithBaseURL(BasePath,htmlText, "text/html", "UTF-8","");
 
         gestureDetector = new GestureDetector(this, new MyGestureDetector());
@@ -223,35 +221,7 @@ public class DisplayActivity extends Activity {
     }
 
 
-
-    private void toggleTheme(){
-
-
-/*
-
-// Old method .. only works in my phone :P
-        try {
-            Class clsWebSettingsClassic = getClassLoader().loadClass("android.webkit.WebSettingsClassic");
-            Method md = clsWebSettingsClassic.getMethod("setProperty", String.class, String.class);
-            md.invoke(webView.getSettings(), "inverted", String.valueOf(isNightTheme));
-            md.invoke(webView.getSettings(), "inverted_contrast", "1");
-
-            if(isNightTheme) {
-                dayNight.setText("Day Mode");
-                isNightTheme =false;
-            }else{
-                dayNight.setText("Night Mode");
-                isNightTheme =true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        */
-    }
-
-
     public void btnDayNightOnClick(View view) {
-        //toggleTheme();
         if(isNightTheme){
             setDayTheme();
         }else{
