@@ -1,15 +1,12 @@
-package com.valento.vtucslabmanual.main;
+package com.amabyte.vtucslabmanual.main;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -17,8 +14,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.valento.vtucslabmanual.helper.Helper;
-import com.valento.vtucslabmanual.helper.ToHtml;
+import com.amabyte.vtucslabmanual.helper.Helper;
+import com.amabyte.vtucslabmanual.helper.ToHtml;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package com.valento.vtucslabmanual.main;
+package com.amabyte.vtucslabmanual.main;
 
 import android.content.Intent;
 import android.os.Bundle;

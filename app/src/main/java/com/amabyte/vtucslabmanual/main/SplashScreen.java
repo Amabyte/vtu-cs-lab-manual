@@ -1,8 +1,7 @@
-package com.valento.vtucslabmanual.main;
+package com.amabyte.vtucslabmanual.main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 

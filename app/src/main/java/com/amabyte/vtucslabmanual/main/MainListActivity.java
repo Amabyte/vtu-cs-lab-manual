@@ -1,9 +1,10 @@
-package com.valento.vtucslabmanual.main;
+package com.amabyte.vtucslabmanual.main;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,49 +12,38 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 /*
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 */
-import com.valento.vtucslabmanual.helper.Helper;
+import com.amabyte.vtucslabmanual.helper.Helper;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import blink9.com.vtucslabmanual.R;
 
-/**
- * VTU CS LAB manual Android Project by Ashwin Valento
- */
-public class ListActivity extends Activity implements AdapterView.OnItemClickListener {
 
-    String path=null;
-    String folderName=null;
+public class MainListActivity extends Activity implements AdapterView.OnItemClickListener {
+
+    private boolean doubleBackToExitPressedOnce = false;
+    private String[] items;
     private ListView l;
-    String items[]=null;
 
 
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
-
-        Bundle extras = getIntent().getExtras();
-        folderName=extras.getString(Helper.FOLDER_NAME);
-        path = extras.getString(Helper.PATH);
-
         l = (ListView) findViewById(R.id.ListView);
         l.setAdapter(new ArrayAdapter<String>(this,R.layout.simple_list_item_1,new ArrayList<String>()));
-
-        this.setTitle(folderName);
-        new MyTask().execute(path+ File.separator+folderName);
-
+        new MyTask().execute("docs");
     }
 
-
-
-    class MyTask extends AsyncTask<String,String,Void> {
+    class MyTask extends AsyncTask<String,String,Void>{
 
         private ArrayAdapter<String> adapter;
         @Override
@@ -66,7 +56,7 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
 
             String pathToAssets = objects[0];
             try {
-                items = ListActivity.this.getAssets().list(pathToAssets);
+                items = MainListActivity.this.getAssets().list(pathToAssets);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -87,9 +77,10 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
 
         @Override
         protected void onPostExecute(Void o) {
-            l.setOnItemClickListener(ListActivity.this);
+            l.setOnItemClickListener(MainListActivity.this);
         }
     }
+
 
 
 
@@ -99,7 +90,6 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -137,24 +127,45 @@ public class ListActivity extends Activity implements AdapterView.OnItemClickLis
         return super.onOptionsItemSelected(item);
     }
 
+
+    // Press back button 2ce to exit
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
+    }
+
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent;
 
-        if(Helper.isDirectory(this,path + File.separator + folderName, items[i])){
-
+        if(Helper.isDirectory(this,"docs", items[i])){
             intent = new Intent(this,ListActivity.class);
-            intent.putExtra(Helper.FOLDER_NAME,items[i]);
-            intent.putExtra(Helper.PATH,path+ File.separator+folderName);
+            intent.putExtra("folder",items[i]);
+            intent.putExtra("path","docs");
             startActivity(intent);
         }else{
             intent = new Intent(this,DisplayActivity.class);
-            intent.putExtra(Helper.PATH,path+ File.separator+folderName);
-            intent.putExtra(Helper.FILE_NAME,items[i]);
+            intent.putExtra("path","docs");
+            intent.putExtra("filename",items[i]);
             startActivity(intent);
         }
 
     }
 
-
 }
+
+

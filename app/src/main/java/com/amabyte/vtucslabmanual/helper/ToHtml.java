@@ -1,7 +1,6 @@
-package com.valento.vtucslabmanual.helper;
+package com.amabyte.vtucslabmanual.helper;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.markdown4j.Markdown4jProcessor;
 
