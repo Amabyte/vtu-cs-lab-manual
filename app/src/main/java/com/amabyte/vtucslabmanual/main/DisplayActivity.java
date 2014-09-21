@@ -132,7 +132,6 @@ public class DisplayActivity extends Activity {
                     "}\n" +
                     "img { max-width: 100%; }"+
                     "</style>";
-
         }
 
         String preText = "<html>"
