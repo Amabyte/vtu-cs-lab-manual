@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:id="@+id/linearLayout"
     android:weightSum="8"
-    android:background="#006699" >
+    android:background="#ff174399" >
 
     <ImageView
         android:layout_width="wrap_content"
