@@ -19,7 +19,7 @@ import com.amabyte.vtucslabmanual.helper.ToHtml;
 
 import java.io.File;
 
-import blink9.com.vtucslabmanual.R;
+import com.amabyte.vtucslabmanual.R;
 
 
 public class DisplayActivity extends Activity {

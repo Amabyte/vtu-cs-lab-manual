@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import blink9.com.vtucslabmanual.R;
+import com.amabyte.vtucslabmanual.R;
 import com.crashlytics.android.Crashlytics;
 
 public class SplashScreen extends Activity {

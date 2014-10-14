@@ -21,7 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import blink9.com.vtucslabmanual.R;
+import com.amabyte.vtucslabmanual.R;
 
 /**
  * VTU CS LAB manual Android Project by Ashwin Valento

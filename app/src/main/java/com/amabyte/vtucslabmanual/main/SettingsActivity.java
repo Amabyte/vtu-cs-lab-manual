@@ -6,7 +6,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 
-import blink9.com.vtucslabmanual.R;
+import com.amabyte.vtucslabmanual.R;
 
 public class SettingsActivity extends PreferenceActivity {
 

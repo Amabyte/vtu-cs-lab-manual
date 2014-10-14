@@ -23,7 +23,7 @@ import com.amabyte.vtucslabmanual.helper.Helper;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import blink9.com.vtucslabmanual.R;
+import com.amabyte.vtucslabmanual.R;
 
 
 public class MainListActivity extends Activity implements AdapterView.OnItemClickListener {
