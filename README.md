@@ -1,4 +1,4 @@
-# VTU CS LAN MANUAL #
+# VTU CS LAB MANUAL #
 
 ## Thanks to FSMK.
 
