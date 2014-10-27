@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.amabyte.vtucslabmanual" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/book_icon"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Blink9blue" >
+
+        <activity
+            android:name="com.amabyte.vtucslabmanual.main.SplashScreen"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.amabyte.vtucslabmanual.main.MainListActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.amabyte.vtucslabmanual.main.ListActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.amabyte.vtucslabmanual.main.DisplayActivity"
+            android:configChanges="keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.amabyte.vtucslabmanual.main.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="crashlytics_api_key"/>
+    </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+</manifest>
