@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.amabyte.vtucslabmanual.R;
-import com.crashlytics.android.Crashlytics;
 
 public class SplashScreen extends Activity {
 
@@ -16,7 +15,7 @@ public class SplashScreen extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Crashlytics.start(this);
+
         setContentView(R.layout.activity_splash);
         new Handler().postDelayed(new Runnable() {
 
